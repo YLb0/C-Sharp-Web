@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CarViewModel>
+
+@{
+    ViewBag.Title = "All Cars";
+}
+
+<div class="text-center row">
+    <div class="row row-cols-4 justify-content-end" style="margin-bottom: 5px">
+        <form asp-controller="Cars" asp-action="Search" method="get">
+        <div class="input-group">
+            <input type="search" name="search"  class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <button type="submit" class="btn btn-outline-primary">search</button>
+        </div>
+    </form>
+    </div>
+    <h3 class="card-title mt-1">All - Cars</h3>
+    @foreach (var car in Model)
+    {
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        {
+                    <div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+                 src="@car.ImageUrl" alt="Movie Image">
+            <div class="card-body">
+
+                <h5 class="card-title mt-1">@car.CarName</h5>
+                <p class="mb-0">Model: @car.Model</p>
+                <p class="mb-0">Year Of Manufacture: @car.TheProductYear.ToString("dd-MM-yyyy")</p>
+                <p class="mb-0">Registration Start Date: @car.StartRegistrationDate.ToString("dd-MM-yyyy")</p>
+                <p class="mb-0">Registration End Date: @car.EndRegistrationDate.ToString("dd-MM-yyyy")</p>
+                <p class="mb-0">Cost: @car.Cost  €</p>
+                <p>Registration Status: @car.Registrations</p>
+                <p>
+                    <span style="float:none">
+                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
+                    </span>
+                </p>
+                <form class="mt-2" asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id">
+                    <div class="d-grid gap-2">
+                        <span style="float:left">
+                            <input type="submit" value="Delete" class="btn btn-danger mb-2"
+                                   onclick="return confirm('Are you sure you want to delete post: @car.Id')" />
+                        </span>
+                    </div>
+                </form>
+
+            </div>
+      </div>
+            
+        }
+        else
+        {
+                    <div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+                 src="@car.ImageUrl" alt="Movie Image">
+            <div class="card-body">
+
+                <h5 class="card-title mt-1">@car.CarName</h5>
+                <p class="mb-0">Model: @car.Model</p>
+                <p class="mb-0">Year Of Manufacture: @car.TheProductYear.ToString("dd-MM-yyyy")</p>
+                <p class="mb-0">Registration Start Date: @car.StartRegistrationDate.ToString("dd-MM-yyyy")</p>
+                <p class="mb-0">Registration End Date: @car.EndRegistrationDate.ToString("dd-MM-yyyy")</p>
+                <p class="mb-0">Cost: @car.Cost  €</p>
+                <p>Registration Status: @car.Registrations</p>
+            </div>
+      </div>
+        }
+    }
+</div>
+
+
+
+
+@*            <form class="input-group-sm" asp-route-movieId="@car.Id" asp-controller="Cars" asp-action="AddToCollection" method="post">
+                <input type="submit" value="Mark as Watched" class="fs-6 btn btn-success mb-3 p-2" />
+            </form>*@
+
+
+
+
+@*                <p>
+                     <span style="float:none">
+                        <a onclick="return window.confirm('Are you sure?" asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" onclick="return window.confirm('Are you sure?" class="btn btn-danger">Delete</a>
+                    </span>
+                </p>*@
+
+
+
+@*                <div class="mb-3">
+                    <label class="form-label"> dog age</label>
+                    <input type="number" class="form-control"/>
+                </div>*@

@@ -1,0 +1,171 @@
+﻿@model AddCarViewModel
+
+@{
+    ViewData["Title"] = "Add Car";
+}
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+@*            <form method="post">
+                <label class="form-label" for="customFile">Default file input example</label>
+                <input type="file" class="form-control" id="customFile" />
+            </form>*@
+            <div class="mb-3">
+                <label asp-for="@Model.CarName" class="form-label"></label>
+                <input asp-for="@Model.CarName" class="form-control" aria-required="true" />
+                <span asp-validation-for="CarName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Model" class="form-label"></label>
+                <input asp-for="@Model.Model" class="form-control" aria-required="true" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.TheProductYear" class="form-label"></label>
+                <input asp-for="@Model.TheProductYear" class="form-control" aria-required="true" />
+                <span asp-validation-for="TheProductYear" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.ImageUrl" class="form-label"></label>
+                <input asp-for="@Model.ImageUrl" class="form-control" aria-required="true" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.StartRegistrationDate" class="form-label"></label>
+                <input asp-for="@Model.StartRegistrationDate" class="form-control" aria-required="true" />
+                <span asp-validation-for="StartRegistrationDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.EndRegistrationDate" class="form-label"></label>
+                <input asp-for="@Model.EndRegistrationDate" class="form-control" aria-required="true" />
+                <span asp-validation-for="EndRegistrationDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Cost" class="form-label"></label>
+                <input asp-for="@Model.Cost" class="form-control" aria-required="true" step="3" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.RegistrationsId" class="form-label">Registration Status</label>
+                <select asp-for="@Model.RegistrationsId" class="form-control">
+                    @foreach (var registration in Model.Registrations)
+                    {
+                        <option value="@registration.Id">@registration.Registration</option>
+                    }
+                </select>
+                <span asp-validation-for="RegistrationsId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+@*         PER EMRAT E RABVE*@
+
+@*                <label for="input_select_mark">Lets find your car</label>
+                <select name="mark" onchange="get_groups(this.value)" class="input_select_mark" id="input_select_mark">
+                    <option value="">Select make</option>
+                    <option value="abarth">Abarth</option>
+                    <option value="aiways">Aiways</option>
+                    <option value="alfa-romeo">Alfa Romeo</option>
+                    <option value="alpine">Alpine</option>
+                    <option value="asia-motors">Asia Motors</option>
+                    <option value="aston-martin">Aston Martin</option>
+                    <option value="audi">Audi</option>
+                    <option value="austin">Austin</option>
+                    <option value="autobianchi">Autobianchi</option>
+                    <option value="bentley">Bentley</option>
+                    <option value="bmw">BMW</option>
+                    <option value="bugatti">Bugatti</option>
+                    <option value="buick">Buick</option>
+                    <option value="cadillac">Cadillac</option>
+                    <option value="carver">Carver</option>
+                    <option value="chevrolet">Chevrolet</option>
+                    <option value="chrysler">Chrysler</option>
+                    <option value="citroen">Citroen</option>
+                    <option value="corvette">Corvette</option>
+                    <option value="cupra">Cupra</option>
+                    <option value="dacia">Dacia</option>
+                    <option value="daewoo">Daewoo</option>
+                    <option value="daihatsu">Daihatsu</option>
+                    <option value="daimler">Daimler</option>
+                    <option value="datsun">Datsun</option>
+                    <option value="dodge">Dodge</option>
+                    <option value="donkervoort">Donkervoort</option>
+                    <option value="ds">DS</option>
+                    <option value="ferrari">Ferrari</option>
+                    <option value="fiat">Fiat</option>
+                    <option value="fisker">Fisker</option>
+                    <option value="ford">Ford</option>
+                    <option value="fso">FSO</option>
+                    <option value="galloper">Galloper</option>
+                    <option value="honda">Honda</option>
+                    <option value="hummer">Hummer</option>
+                    <option value="hyundai">Hyundai</option>
+                    <option value="infiniti">Infiniti</option>
+                    <option value="innocenti">Innocenti</option>
+                    <option value="iveco">Iveco</option>
+                    <option value="jaguar">Jaguar</option>
+                    <option value="jeep">Jeep</option>
+                    <option value="josse">Josse</option>
+                    <option value="kia">Kia</option>
+                    <option value="lada">Lada</option>
+                    <option value="lamborghini">Lamborghini</option>
+                    <option value="lancia">Lancia</option>
+                    <option value="land-rover">Land Rover</option>
+                    <option value="landwind">Landwind</option>
+                    <option value="lexus">Lexus</option>
+                    <option value="lincoln">Lincoln</option>
+                    <option value="lotus">Lotus</option>
+                    <option value="marcos">Marcos</option>
+                    <option value="maserati">Maserati</option>
+                    <option value="maybach">Maybach</option>
+                    <option value="mazda">Mazda</option>
+                    <option value="mclaren">McLaren</option>
+                    <option value="mega">Mega</option>
+                    <option value="mercedes-benz">Mercedes-Benz</option>
+                    <option value="mercury">Mercury</option>
+                    <option value="mg">MG</option>
+                    <option value="mini">Mini</option>
+                    <option value="mitsubishi">Mitsubishi</option>
+                    <option value="morgan">Morgan</option>
+                    <option value="morris">Morris</option>
+                    <option value="nissan">Nissan</option>
+                    <option value="noble">Noble</option>
+                    <option value="opel">Opel</option>
+                    <option value="peugeot">Peugeot</option>
+                    <option value="pgo">PGO</option>
+                    <option value="polestar">Polestar</option>
+                    <option value="pontiac">Pontiac</option>
+                    <option value="porsche">Porsche</option>
+                    <option value="princess">Princess</option>
+                    <option value="renault">Renault</option>
+                    <option value="rolls-royce">Rolls-Royce</option>
+                    <option value="rover">Rover</option>
+                    <option value="saab">Saab</option>
+                    <option value="seat">Seat</option>
+                    <option value="skoda">Skoda</option>
+                    <option value="smart">Smart</option>
+                    <option value="spectre">Spectre</option>
+                    <option value="ssangyong">Ssangyong</option>
+                    <option value="subaru">Subaru</option>
+                    <option value="suzuki">Suzuki</option>
+                    <option value="talbot">Talbot</option>
+                    <option value="tesla">Tesla</option>
+                    <option value="think">Think</option>
+                    <option value="toyota">Toyota</option>
+                    <option value="triumph">Triumph</option>
+                    <option value="tvr">TVR</option>
+                    <option value="volkswagen">Volkswagen</option>
+                    <option value="volvo">Volvo</option>
+                    <option value="yugo">Yugo</option>
+                </select>*@
